@@ -205,50 +205,56 @@ Feature: Topic of the task
 				</section>
 
                 <section>
-                    <h2>Term-based vs full-text</h2>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Term-based</th>
-                            <th>Full-text</th>
-                        </tr>
-                        <thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <ul>
-                                    <li>No analysis phase</li>
-                                    <li>Operates on a single term</li>
-                                    <li>Requires exact match</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>Understands field mapping</li>
-                                    <li>Query is passed though an analyzer</li>
-                                    <li>Analyzer produces list of terms to be queried</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </section>
+					<section>
+						<h2>Full-text search</h2>
+					</section>
 
-                <section>
-                    <h2>The match query</h2>
-                    <ul>
-                        <li>The first query you should consider</li>
-                        <li>High-level full-text query</li>
-                    </ul>
-                    <p>Example:</p>
-                    <pre><code>
-"query": {
-    "match": {
-        "title": "FOO!"
+                    <section>
+                        <h2>Term-based vs full-text</h2>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Term-based</th>
+                                <th>Full-text</th>
+                            </tr>
+                            <thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>No analysis phase</li>
+                                        <li>Operates on a single term</li>
+                                        <li>Requires exact match</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Understands field mapping</li>
+                                        <li>Query is passed though an analyzer</li>
+                                        <li>Analyzer produces list of terms to be queried</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section>
+                        <h2>The match query</h2>
+                        <ul>
+                            <li>The first query you should consider</li>
+                            <li>High-level full-text query</li>
+                        </ul>
+                        <p>Example:</p>
+                        <pre><code>
+    "query": {
+        "match": {
+            "title": "FOO!"
+        }
     }
-}
-                    </code></pre>
-                    <p>Resulting search term: 'foo'</p>
+                        </code></pre>
+                        <p>Resulting search term: 'foo'</p>
+                    </section>
                 </section>
 
 				<section>
