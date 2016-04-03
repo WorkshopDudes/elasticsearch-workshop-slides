@@ -690,10 +690,270 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 					</section>
 
 					<section>
-						<h2>TODO</h2>
+						<table>
+							<thead>
+							<tr>
+								<th>Metric</th>
+								<th>Bucket</th>
+								<th>Pipeline</th>
+							</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Min</td>
+									<td>Range</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Max</td>
+									<td>Terms</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Sum</td>
+									<td>Histogram</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Avg</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Stats</td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+					<section>
+						<h2>Buckets</h2>
+						<h5>Range</h5>
+						<table>
+							<tr>
+								<td width="550px">
+									<pre><code data-trim data-noescape>
+...
+"aggs" : {
+  "price_ranges" : {
+    "range" : {
+      "field" : "price",
+      "ranges" : [
+        { "to" : 10 },
+        { "from" : 10, "to" : 30 },
+        { "from" : 30 }
+      ]
+    }
+  }
+}
+...
+									</code></pre>
+								</td>
+								<td width="350px">
+									<pre><code data-trim>
+...
+"buckets": {
+  "*-10.0": {
+    "to": 10,
+    "doc_count": 0
+  },
+  "10.0-30.0": {
+    "from": 10,
+      "to": 30,
+      "doc_count": 2
+  },
+  "30.0-*": {
+    "from": 30,
+    "doc_count": 1
+  }
+}
+...
+									</code></pre>
+								</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h2>Buckets</h2>
+						<h5>Histogram</h5>
+						<table>
+							<tr>
+								<td width="350px">
+									<pre><code data-trim>
+...
+"aggs" : {
+  "prices" : {
+    "histogram" : {
+      "field" : "price",
+      "interval" : 15
+    }
+  }
+}
+...
+									</code></pre>
+								</td>
+								<td width="350px" height="900px">
+									<pre><code data-trim >
+...
+"prices" : {
+  "buckets": [
+    {
+      "key": 0,
+      "doc_count": 1
+    },
+    {
+      "key": 15,
+      "doc_count": 1
+    },
+    {
+      "key": 30,
+      "doc_count": 0
+    },
+    {
+	  "key": 45,
+	  "doc_count": 1
+	}
+    ]
+  }
+}
+...
+									</code></pre>
+								</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h2>Buckets</h2>
+						<h5>Terms</h5>
+						<table>
+							<tr>
+								<td width="350px">
+									<pre><code data-trim>
+...
+"aggs" : {
+  "categories" : {
+    "terms" : {
+      "field" : "category"
+    }
+  }
+}
+...									</code></pre>
+								</td>
+								<td width="350px">
+									<pre><code data-trim>
+...
+"buckets": [
+  {
+    "key": "programming",
+    "doc_count": 2
+  },
+  {
+    "key": "refactoring",
+    "doc_count": 1
+  }
+...
+										</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+					<section>
+						<h2>Metrics</h2>
+						<h5>Min</h5>
+						<table>
+							<tbody>
+								<tr>
+									<td width="400px">
+										<pre><code data-trim>
+"aggs" : {
+  "min_price" : {
+    "min" : {
+     "field" : "price"
+    }
+  }
+}
+										</code></pre>
+									</td>
+									<td width="300px">
+										<pre><code data-trim>
+"aggregations": {
+  "min_price": {
+    "value": 14.9
+  }
+}
+										</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+					<section>
+						<h2>Metrics</h2>
+						<h5>Avg</h5>
+						<table>
+							<tbody>
+								<tr>
+									<td width=400px>
+										<pre><code data-trim>
+"aggs" : {
+  "avg_price" : {
+    "avg" : {
+      "field" : "price"
+    }
+  }
+}
+										</code></pre>
+									</td>
+									<td width=300px>
+										<pre><code data-trim>
+"aggregations": {
+  "avg_price": {
+    "value": 30.099999999999998
+  }
+}
+										</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+					<section>
+						<h2>Metric</h2>
+						<h5>Stats</h5>
+						<table>
+							<tbody>
+								<tr>
+									<td width=400px>
+										<pre><code data-trim>
+"aggs" : {
+  "price_stats" : {
+    "stats" : {
+      "field" : "price"
+    }
+  }
+}
+										</code></pre>
+									</td>
+									<td width=300px>
+										<pre><code data-trim>
+"aggregations": {
+  "prices_stats": {
+    "count": 3,
+	"min": 14.9,
+    "max": 45.5,
+    "avg": 30.099999999999998,
+    "sum": 90.3
+  }
+}
+										</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</section>
 				</section>
-
 				<section>
 					<section>
 						<h2>Workshop tasks</h2>
@@ -784,9 +1044,7 @@ Feature: Topic of the task
 						<img data-src="images/tasks.png" />
 					</section>-->
 				</section>
-
 			</div>
-
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
