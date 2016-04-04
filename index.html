@@ -114,7 +114,8 @@ Feature: Topic of the task
 						<ul>
 							<li>Manual installation
 								<ul>
-									<li>behave --outfile=build/tasks-results</li>
+									<li> Windows: `run-tasks.cmd`</li>
+									<li> Linux: `./run-tasks.sh`</li>
 								</ul>
 							</li>
 							<li>Docker
@@ -138,7 +139,10 @@ Feature: Topic of the task
 					<section>
 						<h2>What is mapping?</h2>
 						<p>
-							Mapping is the process of defining how a document, and the fields it contains, are stored and indexed.
+							Mapping is the process of defining how a document, and the fields it contain, are stored and indexed.
+						</p>
+						<p>
+							This is similar to a database schema.
 						</p>
 					</section>
 
@@ -185,14 +189,14 @@ Feature: Topic of the task
 							<tbody>
 							<tr>
 								<td>Full text search</td>
-								<td>Excat match</td>
+								<td>Exact match</td>
 							</tr>
 							<tr>
 								<td>Relevance scoring</td>
 								<td>Binary yes/no</td>
 							</tr>
 							<tr>
-								<td>Relativly slow</td>
+								<td>Relatively slow</td>
 								<td>Fast</td>
 							</tr>
 							<tr>
