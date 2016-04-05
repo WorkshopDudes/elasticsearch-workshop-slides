@@ -867,6 +867,7 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 								<tr>
 									<td width="400px">
 										<pre><code data-trim>
+...
 "aggs" : {
   "min_price" : {
     "min" : {
@@ -874,15 +875,18 @@ $curl -X PUT localhost:9200/books/computer/1 --data
     }
   }
 }
+...
 										</code></pre>
 									</td>
 									<td width="300px">
 										<pre><code data-trim>
+...
 "aggregations": {
   "min_price": {
     "value": 14.9
   }
 }
+...
 										</code></pre>
 									</td>
 								</tr>
@@ -897,6 +901,7 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 								<tr>
 									<td width=400px>
 										<pre><code data-trim>
+...
 "aggs" : {
   "avg_price" : {
     "avg" : {
@@ -904,15 +909,18 @@ $curl -X PUT localhost:9200/books/computer/1 --data
     }
   }
 }
+...
 										</code></pre>
 									</td>
 									<td width=300px>
 										<pre><code data-trim>
+...
 "aggregations": {
   "avg_price": {
     "value": 30.099999999999998
   }
 }
+...
 										</code></pre>
 									</td>
 								</tr>
@@ -920,13 +928,14 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 						</table>
 					</section>
 					<section>
-						<h2>Metric</h2>
+						<h2>Metrics</h2>
 						<h5>Stats</h5>
 						<table>
 							<tbody>
 								<tr>
 									<td width=400px>
 										<pre><code data-trim>
+...
 "aggs" : {
   "price_stats" : {
     "stats" : {
@@ -934,10 +943,12 @@ $curl -X PUT localhost:9200/books/computer/1 --data
     }
   }
 }
+...
 										</code></pre>
 									</td>
 									<td width=300px>
 										<pre><code data-trim>
+...
 "aggregations": {
   "prices_stats": {
     "count": 3,
@@ -947,6 +958,7 @@ $curl -X PUT localhost:9200/books/computer/1 --data
     "sum": 90.3
   }
 }
+...
 										</code></pre>
 									</td>
 								</tr>
