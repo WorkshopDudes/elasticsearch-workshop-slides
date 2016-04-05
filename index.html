@@ -968,6 +968,53 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 				</section>
 				<section>
 					<section>
+						<h2>Highlighting</h2>
+					</section>
+					<section>
+						<table>
+							<tbody>
+								<tr>
+									<td width=400px>
+										<pre><code data-trim>
+{
+  "query": {
+    "match": {
+      "name": "legacy code"
+    }
+  },
+  "highlight": {
+    "fields": {
+      "name": {}
+    }
+  }
+}
+										</code></pre>
+									</td>
+									<td width=500px>
+										<pre><code data-trim>
+...
+"highlight": {
+  "name": [
+  "Working Effectively with
+   <em>Legacy</em> <em>Code</em>"
+   ]
+}
+...
+"highlight": {
+  "name": [
+  "Clean <em>Code</em>"
+  ]
+}
+...
+										</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</section>
+				<section>
+					<section>
 						<h2>Workshop tasks</h2>
 					</section>
 
