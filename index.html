@@ -330,13 +330,25 @@ cd elasticsearch-2.2.0/bin
                 <p>The act of storing data in Elasticsearch is called indexing.</p>
                 <pre><code class="hljs" data-trim contenteditable>
 $curl -X POST localhost:9200/books/computer/1 --data
-'{"name": "The Pragmatic Programmer", "category": "Programming", "price": 29.90 }'
+'{
+    "name": "The Pragmatic Programmer",
+    "category": "Programming",
+    "price": 29.90
+}'
 
 $curl -X POST localhost:9200/books/computer/2 --data
-'{ "name": "Clean Code", "category": "Programming", "price": 14.90}'
-
-$curl -X POST localhost:9200/books/computer/3
---data '{"name": "Working Effectively with Legacy Code", "category": "Refactoring", "price": 45.50}'
+'{ 
+    "name": "Clean Code",
+    "category": "Programming",
+    "price": 14.90
+}'
+                    
+$curl -X POST localhost:9200/books/computer/3 --data
+'{
+    "name": "Working Effectively with Legacy Code",
+    "category": "Refactoring",
+    "price": 45.50
+}'
                 </code></pre>
                 <aside class="notes">
                     It is much like the INSERT keyword in SQL except that, if the document already exists, the new
