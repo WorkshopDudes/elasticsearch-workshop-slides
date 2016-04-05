@@ -368,19 +368,21 @@ curl -X POST localhost:9200/books/computer/3 --data '{ "name": "Working Effectiv
             <section>
                 <h2>Get</h2>
                 <pre><code class="hljs" data-trim contenteditable>
-                    $curl -X GET localhost:9200/big-one/pizza/1
+                    $curl -X GET localhost:9200/books/computer/1
                 </code></pre>
                 <p>Result:</p>
                 <pre><code class="hljs" data-trim contenteditable>
 {
-   "_index":"big-one",
-   "_type":"pizza",
-   "_id":"1",
-   "_version":1,
-   "found":true,
-   "_source":{
-      "name":"California Sunset Chicken"
-   }
+   "_index": "books",
+   "_type": "computer",
+   "_id": "1",
+   "_version": 2,
+   "found": true,
+   "_source": {
+      "name": "The Pragmatic Programmer",
+      "category": "Programming",
+      "price": 29.9
+  }
 }
                 </code></pre>
             </section>
@@ -388,16 +390,16 @@ curl -X POST localhost:9200/books/computer/3 --data '{ "name": "Working Effectiv
             <section>
                 <h2>Update</h2>
                 <pre><code class="hljs" data-trim contenteditable>
-$curl -X PUT localhost:9200/big-one/pizza/1 --data
+$curl -X PUT localhost:9200/books/computer/1 --data
 '{
-   "name":"California Sunset Chicken Awesome"
+   "name":"The Awesome Programmer"
 }'
                 </code></pre>
                 <p>Result:</p>
                <pre><code class="hljs" data-trim contenteditable>
 {
-   "_index":"big-one",
-   "_type":"pizza",
+   "_index":"books",
+   "_type":"computer",
    "_id":"1",
    "_version":2,
    "created":false
@@ -409,7 +411,7 @@ $curl -X PUT localhost:9200/big-one/pizza/1 --data
             <section>
                 <h2>Delete</h2>
                 <pre><code class="hljs" data-trim contenteditable>
-                    $curl -X DELETE localhost:9200/big-one/pizza/1
+                    $curl -X DELETE localhost:9200/books/computer/1
                 </code></pre>
             </section>
 
@@ -429,9 +431,9 @@ $curl -X PUT localhost:9200/big-one/pizza/1 --data
 
             <section>
                 <h2>Full-text search</h2>
-                <p>Find all pizzas that contains the word "California"</p>
+                <p>Find all books that contains the word "code"</p>
                 <pre><code class="hljs" data-trim contenteditable>
-                    $curl -X GET localhost:9200/big-one/pizza/_search?q=California
+                    $curl -X GET localhost:9200/books/computer/_search?q=code
                 </code></pre>
             </section>
 
@@ -448,34 +450,29 @@ $curl -X PUT localhost:9200/big-one/pizza/1 --data
       "failed":0
    },
    "hits":{
-      "total":3,
-      "max_score":0.70273256,
+      "total":2,
+      "max_score":0.15342641,
       "hits":[
          {
-            "_index":"big-one",
-            "_type":"pizza",
-            "_id":"10",
-            "_score":0.70273256,
+            "_index":"books",
+            "_type":"computer",
+            "_id":"2",
+            "_score":0.15342641,
             "_source":{
-               "name":"California Meatballs"
+               "name":"Clean Code",
+               "category":"Programming",
+               "price":14.9
             }
          },
          {
-            "_index":"big-one",
-            "_type":"pizza",
-            "_id":"9",
-            "_score":0.5,
+            "_index":"books",
+            "_type":"computer",
+            "_id":"3",
+            "_score":0.11506981,
             "_source":{
-               "name":"California Malibu"
-            }
-         },
-         {
-            "_index":"big-one",
-            "_type":"pizza",
-            "_id":"1",
-            "_score":0.5,
-            "_source":{
-               "name":"California Sunset Chicken"
+               "name":"Working Effectively with Legacy Code",
+               "category":"Refactoring",
+               "price":45.5
             }
          }
       ]
