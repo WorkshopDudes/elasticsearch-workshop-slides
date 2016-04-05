@@ -316,31 +316,37 @@ cd elasticsearch-2.2.0/bin
             </section>
 
             <section>
-                <h2>Let's do an example - A BigOne pizza website</h2>
+                <h2>Let's do an example - A book website</h2>
                 <ul>
-                    <li>We are building a website to find BigOne pizzas</li>
-                    <li>We have a collection of BigOne pizzas</li>
+                    <li>We are building a website to find books</li>
+                    <li>We have a collection of books</li>
                     <li>We want simple text based searching</li>
                 </ul>
             </section>
 
             <section>
-                <h2>How to store the pizzas?</h2>
+                <h2>How to store the books?</h2>
 
                 <p>The act of storing data in Elasticsearch is called indexing.</p>
                 <pre><code class="hljs" data-trim contenteditable>
 $curl -X POST localhost:9200/big-one/pizza/ --data
 '[
-  { "id": 1, "name": "California Sunset Chicken" },
-  { "id": 2, "name": "American Bacon" },
-  { "id": 3, "name": "Classic American" },
-  { "id": 4, "name": "Double Pepperoni" },
-  { "id": 5, "name": "Triple Cheese" },
-  { "id": 6, "name": "Take Away Meat Lover" },
-  { "id": 7, "name": "New York Grilled Steak" },
-  { "id": 8, "name": "Meat lover" },
-  { "id": 9, "name": "California Malibu" },
-  { "id": 10, "name": "California Meatballs" }
+  {
+    "id": 1,
+    "name": "The Pragmatic Programmer",
+    "category": "Programming",
+    "price": 29.90
+  }, {
+    "id": 2,
+    "name": "Clean Code",
+    "category": "Programming",
+    "price": 14.90
+  }, {
+    "id": 3,
+    "name": "Working Effectively with Legacy Code",
+    "category": "Refactoring",
+    "price": 45.50
+  }
 ]'
                 </code></pre>
                 <aside class="notes">
