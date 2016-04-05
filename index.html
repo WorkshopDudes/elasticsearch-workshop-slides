@@ -342,7 +342,7 @@ $curl -X POST localhost:9200/books/computer/2 --data
     "category": "Programming",
     "price": 14.90
 }'
-                    
+
 $curl -X POST localhost:9200/books/computer/3 --data
 '{
     "name": "Working Effectively with Legacy Code",
@@ -356,6 +356,12 @@ $curl -X POST localhost:9200/books/computer/3 --data
                     don’t like this comparison) your query will be performed, and what is the type (a type could be
                     compared to an SQL table, though I don’t like this comparison either) of the document. From now, I
                     will write indices and types in orange
+
+<!--
+curl -X POST localhost:9200/books/computer/1 --data '{ "name": "The Pragmatic Programmer", "category": "Programming", "price": 29.90}'
+curl -X POST localhost:9200/books/computer/2 --data '{ "name": "Clean Code", "category": "Programming", "price": 14.90}'
+curl -X POST localhost:9200/books/computer/3 --data '{ "name": "Working Effectively with Legacy Code", "category": "Refactoring", "price": 45.50}'
+-->
                 </aside>
             </section>
 
