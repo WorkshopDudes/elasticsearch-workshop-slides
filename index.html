@@ -524,11 +524,20 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 
 				<section>
 					<section>
-						<h2>Query DSL</h2>
+						<h2>Queries and Filters</h2>
 					</section>
 
 					<section>
 						<h2>Query DSL</h2>
+
+                        <ul>
+                            <li>Alternative way of building queries</li>
+                            <li>Allows us to build queries using JSON</li>
+                        </ul>
+					</section>
+
+					<section>
+						<h2>Query</h2>
 
                         <p>Find the books with a name that contains the word "code"</p>
                         <pre><code class="hljs" data-trim contenteditable>
@@ -594,33 +603,12 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 					</section>
 
                     <section>
-                        <h2>Term-based vs full-text</h2>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Term-based</th>
-                                <th>Full-text</th>
-                            </tr>
-                            <thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <ul>
-                                        <li>No analysis phase</li>
-                                        <li>Operates on a single term</li>
-                                        <li>Requires exact match</li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <ul>
-                                        <li>Understands field mapping</li>
-                                        <li>Query is passed though an analyzer</li>
-                                        <li>Analyzer produces list of terms to be queried</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <h2>Terms vs full-text</h2>
+
+                        <ul>
+                            <li>Terms are typically used with filters, and requires exact match</li>
+                            <li>Full-text queries are passed through an ananlyzer, defined by the mapping</li>
+                        </ul>
                     </section>
 
                 </section>
