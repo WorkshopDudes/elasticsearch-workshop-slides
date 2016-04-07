@@ -20,6 +20,14 @@
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+        <style>
+            .background-image-overlay {
+                background: black !important;
+                padding: 10px;
+                opacity: 0.8;
+            }
+        </style>
+
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -43,50 +51,76 @@
 				<section>
 					<h1>Elasticsearch Workshop</h1>
 					<h3>2016</h3>
+                    <aside class="notes">
+                        <ul>
+                            <li>
+                                Velkommen, i dag skal vi holde en Elasticsearch workshop.
+                            </li>
+                        </ul>
+                    </aside>
 				</section>
 
 				<section>
             <h2>Agenda</h2>
             <ul>
-                <li>How does a search engine work</li>
-                <li>Elasticsearch
+                <li class="fragment">How does a search engine work</li>
+                <li class="fragment">Elasticsearch
                     <ul>
-                        <li>What is</li>
-                        <li>Use cases</li>
-						<li>Own experience</li>
-                        <li>How to get started</li>
-						<li>Mapping</li>
-						<li>Full-text and filter context</li>
-						<li>Aggregations</li>
-						<li>Highlightning</li>
-						<li>Workshop tasks</li>
+                        <li class="fragment">What is</li>
+                        <li class="fragment">Use cases</li>
+						<li class="fragment">Own experience</li>
+                        <li class="fragment">How to get started</li>
+						<li class="fragment">Mapping</li>
+						<li class="fragment">Full-text and filter context</li>
+						<li class="fragment">Aggregations</li>
+						<li class="fragment">Highlightning</li>
+						<li class="fragment">Workshop tasks</li>
                     </ul>
                 </li>
             </ul>
+            <aside class="notes">
+                <ul>
+                    <li>Agendaen idag er som følger...</li>
+                </ul>
+            </aside>
         </section>
 
         <section>
             <section>
                 <h2>How does a search engine work?</h2>
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            Hvordan fungerer en søkemotor?
+                        </li>
+                    </ul>
+                </aside>
             </section>
 
             <section data-background="images/overflow2.jpg">
-                <blockquote style="background: black; padding: 10px;">
+                <blockquote class="background-image-overlay">
+                    Your document collection is big! <br />
                     Scan through all the documents every time you search for something?
                 </blockquote>
                 <aside class="notes">
-                    Your document collection is big! Scan all the documents every time you search for something, it
-                    would take forever.
+                    <ul>
+                        <li>
+                            Dette ville tatt evigheter
+                        </li>
+                    </ul>
                 </aside>
             </section>
 
             <section data-background="images/kokeboka4.png">
-                <blockquote style="background: black; padding: 10px;">
+                <blockquote class="background-image-overlay">
                     Pre-process the documents and create an index!
                 </blockquote>
                 <aside class="notes">
-                    To make your queries fast and efficient a search engine will pre-process the documents and create an
-                    index
+                    <ul>
+                        <li>
+                            For å gjøre dine søk raskt og effektivt vil en søkemotor forhåndsbehandle dokumentene og lage en index
+                        </li>
+                    </ul>
                 </aside>
             </section>
 
@@ -94,13 +128,44 @@
                 <h2>Create an inverted index</h2>
                 <img style="box-shadow: none;" data-src="images/inverted-index-1.svg">
                 <aside class="notes">
-                    The inverted index maps terms to documents containing the term.
+                    <ul>
+                        <li>Man lager seg da noe som heter en "invertert index"</li>
+                        <li>På venstre siden har vi tre dokumenter...</li>
+                        <li>Siden dette er en BigOne konferanse, så vil mye av innholdet i dag være pizza relatert...</li>
+                        <li>Det som skjer er at man lager seg en invertert index av disse dokumentene (dokumentene blir
+                            indeksert, som det heter)
+                        </li>
+                        <li>En invertert index (som vi ser på høyre side her nå) inneholder alle ordene som finnes i dokumentene, og for hvert ord så
+                            lister man opp hvilke dokumenter som inneholder ordet...
+                        </li>
+                        <li>Så ordet "pizza" finnes i dokument 0 og 2</li>
+                    </ul>
                 </aside>
             </section>
 
             <section data-background="white">
                 <h2>Find unique terms</h2>
                 <img style="box-shadow: none;" data-src="images/inverted-index-2.svg">
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            Så hvordan finner man unike ord?
+                            <ul>
+                                <li>
+                                    Hvis man f.eks tar for seg dokumentet "Turles loves pizza", så vil det gå igjennom forskjellige steg...
+                                    <ul>
+                                        <li>Man splitter opp dokumentet i ord</li>
+                                        <li>Man gjør alle bokstaver små</li>
+                                        <li>Man finner grunnstammer for ord, f.eks "Loves" blir "love"</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Dette er ett forenklet eksempel...
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </aside>
             </section>
 
             <section data-background="white">
@@ -126,11 +191,22 @@
             <img style="box-shadow: none;" data-src="images/introduction.svg">
             <aside class="notes">
                 <ul>
-                    <li>
-                        Lucene
+                    <li>Jeg skal nå bruke sirka 1 minutt på å si hva Elasticsearch er.
                         <ul>
-                            <li>Cumbersome to use directly</li>
-                            <li>Provides few features for scaling past a single machine</li>
+                            <li>
+                                Lucene
+                                <ul>
+                                    <li>Cumbersome to use directly</li>
+                                    <li>Provides few features for scaling past a single machine</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Real time
+                                <ul>
+                                    <li>Det går fort å indeksere dokumenter</li>
+                                    <li>Data er tilgjenglig for søk nesten med en gang etter indeksering</li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -233,19 +309,23 @@
         <section>
             <section>
                 <h2>How to get started with Elasticsearch?</h2>
+                <aside class="notes">
+                    <ul>
+                        <li>Så hvordan kan man komme igang med Elasticsearch...</li>
+                    </ul>
+                </aside>
             </section>
 
             <section>
                 <h2>It is that easy</h2>
                 <ul>
                     <li>Download Elasticsearch from www.elastic.co</li>
-                    <li>Only requires Java to run</li>
+                    <li>Elasticsearch only requires Java to run</li>
                 </ul>
                 <pre><code class="hljs" data-trim contenteditable>
 wget https://download.elasticsearch.org/elasticsearch/release/...
 tar -zxvf elasticsearch-2.2.0.tar.gz
 cd elasticsearch-2.2.0/bin
-# Start
 ./elasticsearch.sh
                 </code></pre>
             </section>
@@ -253,9 +333,10 @@ cd elasticsearch-2.2.0/bin
             <section>
                 <h2>Zero configurations</h2>
                 <ul>
-                    <li>It just works, right out of the box
+                    <li>Elasticsearch just works
                         <ul>
-                            <li>Sensible defaults</li>
+                            <li>No configuration is needed</li>
+                            <li>It has sensible defaults settings</li>
                         </ul>
                     </li>
                 </ul>
@@ -268,7 +349,7 @@ cd elasticsearch-2.2.0/bin
                 <h2>Is Elasticsearch alive?</h2>
 
                 <p>You can access it at http://localhost:9200 on your web browser, which returns this:</p>
-                <pre><code class="hljs" data-trim contenteditable>
+                <pre class="fragment"><code class="hljs" data-trim contenteditable>
 {
    "status":200,
    "name":"Cypher",
@@ -289,8 +370,13 @@ cd elasticsearch-2.2.0/bin
                 <h2>REST API</h2>
 
                 <ul>
-                    <li>Elasticsearch hides the complexities of Lucene behind a simple REST API
-                    <li>GET, PUT, POST, DELETE</li>
+                    <li>Elasticsearch hides the complexities of Lucene behind a REST API
+                    <ul>
+                        <li>POST (create)</li>
+                        <li>GET (read)</li>
+                        <li>PUT (update)</li>
+                        <li>DELETE (delete)</li>
+                    </ul>
                 </ul>
             </section>
 
@@ -319,7 +405,12 @@ cd elasticsearch-2.2.0/bin
                 <h2>Let's do an example - A book website</h2>
                 <ul>
                     <li>We are building a website to find books</li>
-                    <li>We have a collection of books</li>
+                    <li>We have a collection of books
+                        <br />
+                        <img height="200" data-src="images/the-pragmatic-programmer.jpg" />
+                        <img height="200" data-src="images/clean-code.jpg" />
+                        <img height="200" data-src="images/working-effectively-with-legacy-code.jpg" />
+                    </li>
                     <li>We want simple text based searching</li>
                 </ul>
             </section>
