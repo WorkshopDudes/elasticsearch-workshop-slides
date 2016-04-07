@@ -694,11 +694,11 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 					</section>
 
                     <section>
-                        <h2>Terms vs full-text</h2>
+                        <h2>Choosing between query and filter</h2>
 
                         <ul>
-                            <li>Terms are typically used with filters, and requires exact match</li>
-                            <li>Full-text queries are passed through an analyzer, defined by the mapping</li>
+                            <li>Use queries for full-text search, or for cases where you want a relevance score</li>
+                            <li>Use filters for everything else</li>
                         </ul>
                     </section>
 
