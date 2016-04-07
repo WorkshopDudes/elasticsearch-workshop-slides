@@ -590,24 +590,21 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 					</section>
 
 					<section>
-						<h2>The pizza mapping</h2>
+						<h2>Mapping example</h2>
 						<p>Define the data types of the document fields</p>
 						<pre><code class="hljs" data-trim contenteditable>
 {
-  "pizza": {
+  "book": {
     "properties": {
-      "id": {
-        "type": "long"
-      },
       "name": {
         "type": "string"
       },
-      "topping": {
+      "category": {
         "type": "string",
         "index": "not_analyzed"
       },
-      "weight": {
-        "type": "long"
+      "price": {
+        "type": "float",
       }
     }
   }
@@ -618,161 +615,93 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 
 				<section>
 					<section>
-						<h2>Query and filter context</h2>
+						<h2>Queries and Filters</h2>
 					</section>
 
-            <section>
-                <h2>Alternate Approach</h2>
-                <ul>
-                    <li>Search using Query DSL</li>
-                </ul>
-            </section>
+					<section>
+						<h2>Query DSL</h2>
 
-            <section>
-                <h2>Full-text search</h2>
+                        <ul>
+                            <li>Alternative way of building queries</li>
+                            <li>Allows us to build queries using JSON</li>
+                        </ul>
+					</section>
 
-                <p>Find the pizzas with a name that contains the word "Meat"</p>
-                <pre><code class="hljs" data-trim contenteditable>
-                    $curl -XGET ‘localhost:9200/books/book/_search’ -d
+					<section>
+						<h2>Query</h2>
+
+                        <p>Find the books with a name that contains the word "code"</p>
+                        <pre><code class="hljs" data-trim contenteditable>
+                            $ curl -XGET ‘localhost:9200/books/book/_search’ -d
 '{
-   "query":{
-      "match":{
-         "name":"Meat"
+   "query": {
+      "match": {
+         "name": "code"
       }
    }
 }'
-                </code></pre>
-            </section>
-
-            <section>
-                <h2>Full-text search - result</h2>
-                <p>Sorted by relevance!</p>
-                <pre><code class="hljs" data-trim contenteditable>
-{
-   "took":3,
-   "timed_out":false,
-   "_shards":{
-      "total":5,
-      "successful":5,
-      "failed":0
-   },
-   "hits":{
-      "total":2,
-      "max_score":0.8784157,
-      "hits":[
-         {
-            "_index":"big-one",
-            "_type":"pizza",
-            "_id":"8",
-            "_score":0.8784157,
-            "_source":{
-               "topping":[
-                  "Chorizo"
-               ],
-               "name":"Meat lover"
-            }
-         },
-         {
-            "_index":"big-one",
-            "_type":"pizza",
-            "_id":"6",
-            "_score":0.5,
-            "_source":{
-               "topping":[
-                  "Meatballs",
-                  "Marinated Beef",
-                  "Bacon"
-               ],
-               "name":"Take Away Meat Lover"
-            }
-         }
-      ]
-   }
-}
-                </code></pre>
-            </section>
-
-					<section>
-						<table>
-							<thead>
-							<tr>
-								<th>Query context</th>
-								<th>Filter context</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>Full text search</td>
-								<td>Exact match</td>
-							</tr>
-							<tr>
-								<td>Relevance scoring</td>
-								<td>Binary yes/no</td>
-							</tr>
-							<tr>
-								<td>Relatively slow</td>
-								<td>Fast</td>
-							</tr>
-							<tr>
-								<td>Not cacheable</td>
-								<td>Cacheable</td>
-							</tr>
-							</tbody>
-						</table>
-					</section>
-				</section>
-
-                <section>
-					<section>
-						<h2>Full-text search</h2>
+                        </code></pre>
 					</section>
 
-                    <section>
-                        <h2>Term-based vs full-text</h2>
+
+					<section>
+						<h2>Filtering</h2>
+
+                        <p>Find books belonging to the "Programming" category</p>
+                        <pre><code class="hljs" data-trim contenteditable>
+                            $ curl -XGET ‘localhost:9200/books/book/_search’ -d
+'{
+    "query": {
+        "filtered": {
+            "filter": {
+                "term": { "category": "Programming" }
+            }
+        }
+    }
+}'
+                        </code></pre>
+					</section>
+
+					<section>
+						<h2>Query vs Filter</h2>
+
                         <table>
                             <thead>
                             <tr>
-                                <th>Term-based</th>
-                                <th>Full-text</th>
+                                <th>Query</th>
+                                <th>Filter</th>
                             </tr>
-                            <thead>
+                            </thead>
                             <tbody>
                             <tr>
-                                <td>
-                                    <ul>
-                                        <li>No analysis phase</li>
-                                        <li>Operates on a single term</li>
-                                        <li>Requires exact match</li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <ul>
-                                        <li>Understands field mapping</li>
-                                        <li>Query is passed though an analyzer</li>
-                                        <li>Analyzer produces list of terms to be queried</li>
-                                    </ul>
-                                </td>
+                                <td>Full text search</td>
+                                <td>Exact match</td>
+                            </tr>
+                            <tr>
+                                <td>Relevance scoring</td>
+                                <td>Binary yes/no</td>
+                            </tr>
+                            <tr>
+                                <td>Relatively slow</td>
+                                <td>Fast</td>
+                            </tr>
+                            <tr>
+                                <td>Not cacheable</td>
+                                <td>Cacheable</td>
                             </tr>
                             </tbody>
                         </table>
-                    </section>
+					</section>
 
                     <section>
-                        <h2>The match query</h2>
+                        <h2>Terms vs full-text</h2>
+
                         <ul>
-                            <li>The first query you should consider</li>
-                            <li>High-level full-text query</li>
+                            <li>Terms are typically used with filters, and requires exact match</li>
+                            <li>Full-text queries are passed through an ananlyzer, defined by the mapping</li>
                         </ul>
-                        <p>Example:</p>
-                        <pre><code>
-    "query": {
-        "match": {
-            "title": "FOO!"
-        }
-    }
-                        </code></pre>
-                        <p>Resulting search term: 'foo'</p>
                     </section>
+
                 </section>
 
 				<section>
