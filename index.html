@@ -617,7 +617,7 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 
 				<section>
 					<section>
-						<h2>Queries and Filters</h2>
+						<h2>Queries and filters</h2>
 					</section>
 
 					<section>
@@ -630,37 +630,50 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 					</section>
 
 					<section>
-						<h2>Query</h2>
+						<h2>Full-text query</h2>
 
                         <p>Find the books with a name that contains the word "code"</p>
                         <pre><code class="hljs" data-trim contenteditable>
                             $ curl -XGET ‘localhost:9200/books/book/_search’ -d
 '{
-   "query": {
-      "match": {
-         "name": "code"
-      }
-   }
+  "query": {
+    "match": {
+      "name": "code"
+    }
+  }
 }'
                         </code></pre>
 					</section>
 
-
 					<section>
-						<h2>Filtering</h2>
+						<h2>Term query</h2>
 
                         <p>Find books belonging to the "Programming" category</p>
                         <pre><code class="hljs" data-trim contenteditable>
-                            $ curl -XGET ‘localhost:9200/books/book/_search’ -d
-'{
-    "query": {
-        "filtered": {
-            "filter": {
-                "term": { "category": "Programming" }
-            }
-        }
+{
+  "query": {
+    "term": {
+      "category": "Programming"
     }
-}'
+  }
+}
+                        </code></pre>
+					</section>
+
+					<section>
+						<h2>Filter</h2>
+
+                        <p>Find books belonging to the "Programming" category, while skipping relevance scoring</p>
+                        <pre><code class="hljs" data-trim contenteditable>
+{
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "category": "Programming" } }
+      ]
+    }
+  }
+}
                         </code></pre>
 					</section>
 
@@ -790,8 +803,8 @@ $curl -X PUT localhost:9200/books/computer/1 --data
   },
   "10.0-30.0": {
     "from": 10,
-      "to": 30,
-      "doc_count": 2
+    "to": 30,
+    "doc_count": 2
   },
   "30.0-*": {
     "from": 30,
@@ -982,7 +995,7 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 "aggregations": {
   "prices_stats": {
     "count": 3,
-	"min": 14.9,
+    "min": 14.9,
     "max": 45.5,
     "avg": 30.099999999999998,
     "sum": 90.3
@@ -1054,11 +1067,11 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 						<ul>
                             <li>Intro task - match all (task 0) </li>
 							<li>Full-text search (task 1-4)</li>
-							<li>Filtering (task 5-8)</li>
+							<li>Term queries (task 5-8)</li>
 							<li>Aggregations (task 9-13)</li>
                             <li>Combine full-text search and aggregations (task 14)</li>
 							<li>Sorting (task 15)</li>
-							<li>Highlightning (task 16)</li>
+							<li>Highlighting (task 16)</li>
 							<li>Pagination (task 17-18)</li>
 							</li>
 						</ul>
