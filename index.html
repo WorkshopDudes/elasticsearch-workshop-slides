@@ -56,6 +56,9 @@
                             <li>
                                 Velkommen, i dag skal vi holde en Elasticsearch workshop.
                             </li>
+                            <li>
+                                Welcome...
+                            </li>
                         </ul>
                     </aside>
 				</section>
@@ -79,6 +82,13 @@
                 <li class="fragment">Workshop</li>
             </ul>
             <aside class="notes">
+                ENG:
+                <ul>
+                    <li>The agenda today is as follows...</li>
+                    <li>This will take about one hour...after that we will start coding...</li>
+                    <li>We'll go around to help with software installation after the presentation...</li>
+                </ul>
+                NOR:
                 <ul>
                     <li>Agendaen idag er som følger...</li>
                 </ul>
@@ -103,6 +113,13 @@
                     Scan through all the documents every time you search for something?
                 </blockquote>
                 <aside class="notes">
+                    ENG:
+                    <ul>
+                        <li>
+                            This would have taken forever
+                        </li>
+                    </ul>
+                    NOR:
                     <ul>
                         <li>
                             Dette ville tatt evigheter
@@ -116,6 +133,13 @@
                     Pre-process the documents and create an index!
                 </blockquote>
                 <aside class="notes">
+                    ENG:
+                    <ul>
+                        <li>
+                            To make your search fast a search engine will pre-process documents and make a index
+                        </li>
+                    </ul>
+                    NOR:
                     <ul>
                         <li>
                             For å gjøre dine søk raskt og effektivt vil en søkemotor forhåndsbehandle dokumentene og lage en index
@@ -128,6 +152,18 @@
                 <h2>Create an inverted index</h2>
                 <img style="box-shadow: none;" data-src="images/inverted-index-1.svg">
                 <aside class="notes">
+                    ENG:
+                    <ul>
+                        <li>You make up as something called an "inverted index"</li>
+                        <li>On the left side we have three documents ...</li>
+                        <li>What happens is that we create an "inverted index" of these documents (the documents are indexed, as it is called)
+                        </li>
+                        <li>An inverted index (which we see on the right side here now) contain all the words contained in the documents,
+                            and for every word, we lists up which documents containing the word...
+                        </li>
+                        <li>So the word "pizza" is found in document 0 and 2</li>
+                    </ul>
+                    NOR:
                     <ul>
                         <li>Man lager seg da noe som heter en "invertert index"</li>
                         <li>På venstre siden har vi tre dokumenter...</li>
@@ -147,6 +183,26 @@
                 <h2>Find unique terms</h2>
                 <img style="box-shadow: none;" data-src="images/inverted-index-2.svg">
                 <aside class="notes">
+                    ENG:
+                    <ul>
+                        <li>
+                            So how do you find unique words?
+                            <ul>
+                                <li>
+                                    If we take the document "Turles loves pizza", it will go through different steps ...
+                                    <ul>
+                                        <li>You split the document into words</li>
+                                        <li>You make all letters small</li>
+                                        <li>One finds "grunnstammer" for words, eg " Loves " will "love "</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    This is a simplified example ...
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    NOR:
                     <ul>
                         <li>
                             Så hvordan finner man unike ord?
@@ -190,6 +246,28 @@
         <section data-background="white">
             <img style="box-shadow: none;" data-src="images/introduction.svg">
             <aside class="notes">
+                ENG:
+                <ul>
+                    <li>I will now spend approximately one minute to say what Elasticsearch is.
+                        <ul>
+                            <li>
+                                Lucene
+                                <ul>
+                                    <li>Cumbersome to use directly</li>
+                                    <li>Provides few features for scaling past a single machine</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Real time
+                                <ul>
+                                    <li>Indexing of documents if very fast</li>
+                                    <li>Data is available for search almost immediately after indexing</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                NOR:
                 <ul>
                     <li>Jeg skal nå bruke sirka 1 minutt på å si hva Elasticsearch er.
                         <ul>
