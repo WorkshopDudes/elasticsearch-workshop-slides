@@ -55,16 +55,19 @@
                         ENG:
                         <ul>
                             <li>
-                                Welcome to the Elasticsearch workshop...
+                                Welcome...
                             </li>
                             <li>
-                                We will start the workshop with an presentation.
+                                We will start the Elasticsearch workshop with an presentation...
                             </li>
                             <li>
-                                The presentation will take about one hour... after that we will start coding...
+                                The presentation will take about one hour... after that we will start with workshop tasks...
                             </li>
                             <li>
-                                We'll go around to help with software installation after the presentation...
+                                We'll go around and help with software installation after the presentation...
+                            </li>
+                            <li>
+                                Feel free to ask questions during the presentation...
                             </li>
                         </ul>
                         NOR:
@@ -76,10 +79,13 @@
                                 Vi vil begynne workshopen med en presentasjon
                             </li>
                             <li>
-                                Presentasjonen vil vare i sirka en time... deretter vil vi starte å kode...
+                                Presentasjonen vil vare i sirka en time... deretter vil vi starte med workshop oppgaver...
                             </li>
                             <li>
                                 Vi vil gå rundt å hjelpe med programvare installasjon etter presentasjonen...
+                            </li>
+                            <li>
+                                Gjerne still spørsmål under presentasjonen...
                             </li>
                         </ul>
                     </aside>
@@ -119,6 +125,7 @@
             <section>
                 <h2>How does a search engine work?</h2>
                 <aside class="notes">
+                    NOR:
                     <ul>
                         <li>
                             Hvordan fungerer en søkemotor?
@@ -136,13 +143,13 @@
                     ENG:
                     <ul>
                         <li>
-                            This would have taken forever
+                            This would have taken forever...
                         </li>
                     </ul>
                     NOR:
                     <ul>
                         <li>
-                            Dette ville tatt evigheter
+                            Dette ville tatt evigheter...
                         </li>
                     </ul>
                 </aside>
@@ -156,7 +163,7 @@
                     ENG:
                     <ul>
                         <li>
-                            To make your search fast a search engine will pre-process documents and make a index
+                            To make your search efficient (fast), a search engine will pre-process the documents and make a index
                         </li>
                     </ul>
                     NOR:
@@ -174,7 +181,7 @@
                 <aside class="notes">
                     ENG:
                     <ul>
-                        <li>You make up as something called an "inverted index"</li>
+                        <li>You make something called an "inverted index"</li>
                         <li>On the left side we have three documents ...</li>
                         <li>What happens is that we create an "inverted index" of these documents (the documents are indexed, as it is called)
                         </li>
@@ -209,11 +216,11 @@
                             So how do you find unique words?
                             <ul>
                                 <li>
-                                    If we take the document "Turles loves pizza", it will go through different steps ...
+                                    If we take the document "Turles loves pizza" as an example, it will go through different steps ...
                                     <ul>
                                         <li>You split the document into words</li>
-                                        <li>You make all letters small</li>
-                                        <li>One finds "grunnstammer" for words, eg " Loves " will "love "</li>
+                                        <li>You lowercase all words</li>
+                                        <li>One finds basic stems (grunnstammer) for words, eg "loves" will become "love"</li>
                                     </ul>
                                 </li>
                                 <li>
@@ -255,12 +262,16 @@
                 <p>How well each document matches the query</p>
                 <img style="box-shadow: none;" data-src="images/inverted-index-4.svg">
                 <aside class="notes">
-                    By default, Elasticsearch sorts matching results by their relevance score, that is, by how well each
-                    document matches the query.
+                    ENG:
+                    <ul>
+                        <li>The document "I love my turles" contains both words, so it will be listed first.</li>
+                    </ul>
+                    NOR:
+                    <ul>
+                        <li>Dokumentet ""I love my turles" inneholder begge ordene, så det vil bli listet opp først. Få høyest score.</li>
+                    </ul>
                 </aside>
             </section>
-
-
         </section>
 
         <section data-background="white">
