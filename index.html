@@ -207,7 +207,7 @@
             </section>
 
             <section data-background="white">
-                <h2>Find unique terms</h2>
+                <h2>Find unique words</h2>
                 <img style="box-shadow: none;" data-src="images/inverted-index-2.svg">
                 <aside class="notes">
                     ENG:
@@ -1216,12 +1216,47 @@ Feature: Topic of the task
   Then the response should contain
   """
   { subset }
+  """
 						</code></pre>
 						<ul>
-							<li>Your task is to replace the `{ todo }` with the correct query</li>
+							<li>Your task is to replace the `{ todo }` with the correct query
+                            </li>
 							<li>A query needs to return a correct response { subset } to be passed</li>
 						</ul>
 					</section>
+
+                    <section>
+                        <h2>Known issues - A query need to be correctly aligned</h2>
+
+                        <div class='left' style='float:left;width:48%'>
+							<p>Correct</p>
+							<pre><code>
+  When I make a query
+  """
+  {
+    ...
+  }
+  """
+							</code></pre>
+						</div>
+						<div class='right' style='float:right;width:48%'>
+							<p>Wrong</p>
+							<pre><code>
+ When I make a query
+  """{
+    ...
+}
+  """
+							</code></pre>
+						</div>
+                    </section>
+
+                    <section>
+                        <h2>Known issues - Tab in windows is causing trouble</h2>
+                        <ul>
+                            <li>Please use spaces instead of tab for indentations</li>
+                        </ul>
+                    </section>
 
 					<section>
 						<h2>Compare against subsets</h2>
