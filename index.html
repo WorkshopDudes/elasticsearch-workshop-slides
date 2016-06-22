@@ -726,6 +726,12 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 				<section>
 					<section>
 						<h2>Mapping</h2>
+                        <aside class="notes">
+                            <ul>
+                                <li>Now that Eirik has shown us how to get started, it is time to look into how to do more advanced queries and analysis</li>
+                                <li>But first...</li>
+                            </ul>
+                        </aside>
 					</section>
 
 					<section>
@@ -761,12 +767,27 @@ $curl -X PUT localhost:9200/books/computer/1 --data
   }
 }
                 </code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>Continuing with our book example...</li>
+                            <li>Here is a mapping for books...</li>
+                            <li>Note not_analyzed</li>
+                            <li>Mapping not strictly required, but recommended...</li>
+                        </ul>
+                    </aside>
 					</section>
 				</section>
 
 				<section>
 					<section>
 						<h2>Queries and filters</h2>
+                        <aside class="notes">
+                            <ul>
+                                <li>Moving on...</li>
+                                <li>Earlier Eirik showed us how to do full-text search in the URL...</li>
+                                <li>Going to show a more powerful way</li>
+                            </ul>
+                        </aside>
 					</section>
 
 					<section>
@@ -776,6 +797,11 @@ $curl -X PUT localhost:9200/books/computer/1 --data
                             <li>Alternative way of building queries</li>
                             <li>Allows us to build queries using JSON</li>
                         </ul>
+                        <aside class="notes">
+                            <ul>
+                                <li>Will be used on workshop</li>
+                            </ul>
+                        </aside>
 					</section>
 
 					<section>
@@ -792,6 +818,15 @@ $curl -X PUT localhost:9200/books/computer/1 --data
   }
 }'
                         </code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>Let's say you want to find the books with a name that contains the word "code"</li>
+                                <li>Still using the same URL, but...</li>
+                                <li>Starts with "query"</li>
+                                <li>Using "match" - standard full text query</li>
+                                <li>Get a response similar to what Eirik showed...</li>
+                            </ul>
+                        </aside>
 					</section>
 
 					<section>
@@ -807,6 +842,15 @@ $curl -X PUT localhost:9200/books/computer/1 --data
   }
 }
                         </code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>Different type of query, allows us to search for exact terms</li>
+                                <li>Remember not_analyzed in mapping...</li>
+                                <li>For fields that are not_analyzed, we need to use term queries</li>
+                                <li>Search term must be exacly equal to what has been indexed</li>
+                                <li>Get a similar response like before</li>
+                            </ul>
+                        </aside>
 					</section>
 
 					<section>
@@ -824,6 +868,13 @@ $curl -X PUT localhost:9200/books/computer/1 --data
   }
 }
                         </code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>But let's say you don't care about relevance...</li>
+                                <li>Same response, but without relevance score</li>
+                                <li>Faster - no score calculation</li>
+                            </ul>
+                        </aside>
 					</section>
 
 					<section>
@@ -873,6 +924,11 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 				<section>
 					<section>
 						<h2>Aggregations</h2>
+                        <aside class="notes">
+                            <ul>
+                                <li>So now we have seen some examples of queries and filters, let's move on to aggregations</li>
+                            </ul>
+                        </aside>
 					</section>
 
 					<section>
@@ -917,6 +973,13 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 								</tr>
 							</tbody>
 						</table>
+                        <aside class="notes">
+                            <ul>
+                                <li>Aggregations in the metric family calculate metrics based on values from the documents, so there you have things like...</li>
+                                <li>Bucket aggs on the other hand puts documents in buckets based on a set of criteria.</li>
+                                <li>Probably easiest to understand with some examples.</li>
+                            </ul>
+                        </aside>
 					</section>
 					<section>
 						<h2>Buckets</h2>
@@ -964,6 +1027,16 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 								</td>
 							</tr>
 						</table>
+                        <aside class="notes">
+                            <ul>
+                                <li>Let's say we want to count the number of documents that fit certain price ranges</li>
+                                <li>Have the query on the left and the response on the right</li>
+                                <li>Notice "aggs" vs "query"</li>
+                                <li>Give our aggregation a name</li>
+                                <li>Specify the type of aggregation, "range"</li>
+                                <li>The response will contain buckets for each range with a document count for each bucket</li>
+                            </ul>
+                        </aside>
 					</section>
 					<section>
 						<h2>Buckets</h2>
@@ -1013,6 +1086,14 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 								</td>
 							</tr>
 						</table>
+                        <aside class="notes">
+                            <ul>
+                                <li>Let's say you want to create a Histogram chart</li>
+                                <li>Specify a fixed interval</li>
+                                <li>ES will dynamically generate buckets based on this interval, and count the number of documents in each bucket</li>
+                                <li>Will do this by rounding down each price down to the nearest key</li>
+                            </ul>
+                        </aside>
 					</section>
 					<section>
 						<h2>Buckets</h2>
@@ -1049,6 +1130,13 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 								</tr>
 							</tbody>
 						</table>
+                        <aside class="notes">
+                            <ul>
+                                <li>If we want to get a list of categories and the number of docs in each category, we can use...</li>
+                                <li>Operate on a term field, and generates buckets based on this</li>
+                                <li>ES will create a bucket for each category and count the number of documents for each category</li>
+                            </ul>
+                        </aside>
 					</section>
 					<section>
 						<h2>Metrics</h2>
@@ -1083,6 +1171,12 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 								</tr>
 							</tbody>
 						</table>
+                        <aside class="notes">
+                            <ul>
+                                <li>Now we have seen some bucket aggregations, moving on to metric"
+                                <li>Let's say you want to know the price of the cheapest book</li>
+                            </ul>
+                        </aside>
 					</section>
 					<section>
 						<h2>Metrics</h2>
@@ -1117,6 +1211,11 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 								</tr>
 							</tbody>
 						</table>
+                        <aside class="notes">
+                            <ul>
+                                <li>Similarly, if you want the average price...</li>
+                            </ul>
+                        </aside>
 					</section>
 					<section>
 						<h2>Metrics</h2>
@@ -1155,11 +1254,23 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 								</tr>
 							</tbody>
 						</table>
+                        <aside class="notes">
+                            <ul>
+                                <li>Finally, we have stats</li>
+                                <li>Convenient way to get all...</li>
+                            </ul>
+                        </aside>
 					</section>
 				</section>
 				<section>
 					<section>
 						<h2>Highlighting</h2>
+                        <aside class="notes">
+                            <ul>
+                                <li>Finally, some words about highlighting</li>
+                                <li>When showing the result of a full-text query, it can be useful to highlight the words from the query</li>
+                            </ul>
+                        </aside>
 					</section>
 					<section>
 						<table>
@@ -1202,6 +1313,15 @@ $curl -X PUT localhost:9200/books/computer/1 --data
 								</tr>
 							</tbody>
 						</table>
+                        <aside class="notes">
+                            <ul>
+                                <li>This is how you can do it</li>
+                                <li>Just add a highlight property with the field you want to apply highlighting on</li>
+                                <li>In the response, the words are highlighted by surrounding them with em tags</li>
+                                <li>Customizable, can use different tags etc.</li>
+                                <li>Alright, enough theory. Time for you to try this yourself. Eirik will tell you more about our workshop tasks.</li>
+                            </ul>
+                        </aside>
 					</section>
 				</section>
 				<section>
