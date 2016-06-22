@@ -76,7 +76,10 @@
                         NOR:
                         <ul>
                             <li>
-                                Velkommen, i dag skal vi holde en Elasticsearch workshop.
+                                Hei alle sammen... Fint å se at så mange kunne komme idag...
+                            </li>
+                            <li>
+                                Mitt navn er Eirik og dette er Magne...
                             </li>
                             <li>
                                 Vi vil begynne workshopen med en presentasjon
@@ -123,6 +126,9 @@
                 NOR:
                 <ul>
                     <li>Agendaen for presentasjonen er som følger...</li>
+                    <li>Fram til nå har vi gått igjennom grunnleggende ting...</li>
+                    <li>Så vil vi forklare noe kalt mapping....</li>
+                    <li>Til slutt vil vi forklare hvordan vi har lagt opp workshop oppgavene</li>
                 </ul>
             </aside>
         </section>
@@ -200,7 +206,6 @@
                     <ul>
                         <li>Man lager seg da noe som heter en "invertert index"</li>
                         <li>På venstre siden har vi tre dokumenter...</li>
-                        <li>Siden dette er en BigOne konferanse, så vil mye av innholdet i dag være pizza relatert...</li>
                         <li>Det som skjer er at man lager seg en invertert index av disse dokumentene (dokumentene blir
                             indeksert, som det heter)
                         </li>
@@ -361,6 +366,11 @@
 
                 <p>Count things and summarize your data, lots of data, often on timestamped data!</p>
                 <img data-src="images/analytics.jpg"/>
+                <aside class="notes">
+                    <ul>
+                        <li>For example, how much oil does Statoil produce every day?</li>
+                    </ul>
+                </aside>
             </section>
 
             <section>
@@ -370,9 +380,9 @@
                 <img data-src="images/elk.png"/>
                 <aside class="notes">
                     <ul>
-                        <li>One example of anlaytics is the ELK stack</li>
+                        <li>One example of analytics is the ELK stack</li>
                         <li>Lets say you have several applications running on different servers,
-                            and you want to show its logs in a common place</li>
+                            and you want to show all the logs in a common place</li>
                     </ul>
                 </aside>
             </section>
@@ -380,6 +390,11 @@
             <section>
                 <h2>Geolocation</h2>
                 <img data-src="images/fouraquare.png"/>
+                <aside class="notes">
+                    <ul>
+                        <li>Geo tag</li>
+                    </ul>
+                </aside>
             </section>
 
         </section>
@@ -394,10 +409,10 @@
                      ENG:
                      <ul>
                          <li>The reason I wanted to learn about search engines were...</li>
-                        <li>I have large collected on food recipes ...</li>
-                        <li>And gradually it has become very many food recipes, nearly 400 pages ...</li>
-                        <li>That makes it almost impossible to find what you search for ...</li>
-                        <li>Eg I want to find all the main dishes containing chicken ...</li>
+                        <li>I have for a long time collected food recipes ...</li>
+                        <li>And gradually it has become many food recipes, nearly 400 pages ...</li>
+                        <li>This makes it almost impossible to find what you search for ...</li>
+                        <li>For example I want to find all the main dishes containing chicken ...</li>
                      </ul>
                      NOR:
                     <ul>
@@ -512,8 +527,8 @@ cd elasticsearch-2.2.0/bin
                 <aside class="notes">
                     <ul>
                         <li>If you have not worked with REST API before...</li>
-                        <li>POST, GET, PUT, DELTE is HTTP verbs...</li>
-                        <li>With represents create, read, update and delete operations (CRUD)</li>
+                        <li>POST, GET, PUT, DELTE is HTTP methods (also called verbs)...</li>
+                        <li>...that represents create, read, update and delete operations (CRUD)</li>
                     </ul>
                 </aside>
             </section>
@@ -581,10 +596,7 @@ $curl -X POST localhost:9200/books/computer/3 --data
                 </code></pre>
                 <aside class="notes">
                     It is much like the INSERT keyword in SQL except that, if the document already exists, the new
-                    document would replace the old. The second part indicates on which index (an index could be compared to an SQL database, though I
-                    don’t like this comparison) your query will be performed, and what is the type (a type could be
-                    compared to an SQL table, though I don’t like this comparison either) of the document. From now, I
-                    will write indices and types in orange
+                    document would replace the old.
 
 <!--
 curl -X POST localhost:9200/books/computer/1 --data '{ "name": "The Pragmatic Programmer", "category": "Programming", "price": 29.90}'
